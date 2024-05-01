@@ -2,10 +2,10 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const axios = require('axios');
-const bodyParser = require('body-parser'); // Import body-parser
+const bodyParser = require('body-parser');
 
 app.use(cors());
-app.use(bodyParser.json()); // Add body-parser middleware
+app.use(bodyParser.json());
 
 app.listen(8000, () => {
     console.log('Server running at port 8000');
@@ -15,8 +15,8 @@ app.post('/product', async (req, res) => {
     console.log(req.body)
     const cat = req.body.category;
    
-    const API = `http://20.244.56.144/test/companies/FLP/categories/${cat}/products?top=10&minPrice=1&maxPrice=1000`;
-    console.log(API)
+    const URL= `http://20.244.56.144/test/companies/FLP/categories/${cat}/products?top=10&minPrice=1&maxPrice=1000`;
+    console.log(URL)
     const params = {
         top: 10,
         minPrice: 1,
@@ -27,7 +27,7 @@ app.post('/product', async (req, res) => {
         Authorization: `Bearer ${bearerToken}`
     };
     try {
-        const result = await axios.get(API, { headers, params });
+        const result = await axios.get(URL, { headers, params });
         console.log(result)
         res.json(result.data).status(200); 
     } catch (error) {
