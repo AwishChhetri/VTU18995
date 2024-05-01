@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Box, Text, Center, Spinner, Heading, Flex, Select } from '@chakra-ui/react';
-
+//Product Card
 const ProductCard = ({ productName, price, rating, discount, availability }) => {
   return (
     <Box borderWidth="1px" borderRadius="lg" overflow="hidden" mb={4} p={4}>
@@ -22,12 +22,12 @@ const App = () => {
   const handleCategoryChange = (e) => {
     setCategory(e.target.value);
   };
-
+  //Get the data
   const fetchData = async () => {
     setLoading(true);
     try {
       const res = await axios.post(`http://localhost:8000/product`, { category });
-      setProducts(res.data); // Assuming res.data is an array of products
+      setProducts(res.data); 
     } catch (error) {
       console.error('Error fetching products:', error);
     } finally {
